@@ -4,22 +4,25 @@
 	"description": "A wrapper on top of kleur with ability to write test against the color functions",
 	"main": "build/index.js",
 	"files": [
-		"build/src",
-		"build/index.d.ts",
-		"build/index.js"
+		"build",
+		"src",
+		".eslintrc.json",
+		"tsconfig.json",
+		"index.ts"
 	],
 	"scripts": {
 		"mrm": "mrm --preset=@adonisjs/mrm-preset",
 		"pretest": "npm run lint",
 		"test": "node japaFile.js",
-		"clean": "del build",
-		"compile": "npm run lint && npm run clean && tsc",
+		"clean": "rm -rf build",
+		"compile": "npm run clean && tsc",
 		"format": "prettier --write .",
 		"build": "npm run compile",
 		"commit": "git-cz",
 		"release": "np",
 		"version": "npm run build",
 		"prepublishOnly": "npm run build",
+		"postinstall": "npm run build",
 		"lint": "eslint . --ext=.ts",
 		"sync-labels": "github-label-sync --labels ./node_modules/@adonisjs/mrm-preset/gh-labels.json poppinss/colors"
 	},
@@ -30,10 +33,8 @@
 	"author": "virk,poppinss",
 	"license": "MIT",
 	"devDependencies": {
-		"@adonisjs/mrm-preset": "^4.1.1",
 		"@adonisjs/require-ts": "^2.0.6",
 		"@types/node": "^16.3.3",
-		"del-cli": "^4.0.1",
 		"doctoc": "^2.0.1",
 		"eslint": "^7.31.0",
 		"eslint-config-prettier": "^8.3.0",
@@ -41,11 +42,10 @@
 		"eslint-plugin-prettier": "^3.4.0",
 		"github-label-sync": "^2.0.1",
 		"husky": "^7.0.1",
-		"japa": "^3.1.1",
 		"mrm": "^3.0.2",
 		"np": "^7.5.0",
 		"prettier": "^2.3.2",
-		"typescript": "^4.3.5"
+		"typescript": "^4.4.4"
 	},
 	"nyc": {
 		"exclude": [
@@ -65,7 +65,9 @@
 		"anyBranch": false
 	},
 	"dependencies": {
+		"@adonisjs/mrm-preset": "^4.1.1",
 		"color-support": "^1.1.3",
+		"japa": "^3.1.1",
 		"kleur": "^4.1.4"
 	},
 	"directories": {
